@@ -89,7 +89,7 @@ def update_book(id):
         author = request.form['author']
         d = lst[id]
         d['title'] = title
-        d['author'] = author
+        d['author'] = int(author) #'0'
         return redirect('/books')
 
 
