@@ -83,7 +83,7 @@ def del_book(id):
 @app.route('/update_book/<int:id>', methods=['POST', 'GET'])
 def update_book(id):
     if request.method == 'GET':
-        return render_template('add_book.html', book=lst[id])
+        return render_template('add_book.html', book=lst[id], authors=authors)
     else:
         title = request.form['title']
         author = request.form['author']
