@@ -1,26 +1,33 @@
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
+authors = [
+    'Adam Mickiewicz',
+    'Jrr Tolkien',
+    'Andrzej Sapkowski'
+]
 
 lst = [
     {
-        'title':'Pan Tadeusz',
-        'author':'Adam Mickiewicz'
+        'title': 'Pan Tadeusz',
+        'author': 0
     },
     {
-        'title':'Wyprawa',
-        'author':'Jrr Tolkien'
+        'title': 'Wyprawa',
+        'author': 1
     },
     {
-        'title':'Dwie wieze',
-        'author':'Jrr tolkien'
+        'title': 'Dwie wieze',
+        'author': 1
     },
     {
-        'title':'Czas Pogardy',
-        'author':'Andrzej Sapkowski'
+        'title': 'Czas Pogardy',
+        'author': 2
     }
 
 ]
+
+
 @app.route('/')
 def hello_world():  # put application's code here
     return render_template('base.html')
@@ -38,18 +45,25 @@ def p():
 
 @app.route('/books')
 def books():
-    return render_template('books.html', books=lst)
+    new_list = []
+    for item in lst:
+        new_list.append({
+            'title':item['title'],
+            'author': authors[item['author']]
+        })
+    return render_template('books.html', books=new_list)
+
 
 @app.route('/add_book', methods=['GET', 'POST'])
 def add_book():
     if request.method == 'GET':
-        return render_template('add_book.html')
+        return render_template('add_book.html', authors=authors)
     else:
         title = request.form['title']
-        author = request.form['author']
-        d= {
-            'title':title,
-            'author':author
+        author = int(request.form['author'])
+        d = {
+            'title': title,
+            'author': author
         }
         lst.append(d)
     return redirect('/books')
@@ -65,6 +79,7 @@ def del_book(id):
             lst.pop(id)
         return redirect('/books')
 
+
 @app.route('/update_book/<int:id>', methods=['POST', 'GET'])
 def update_book(id):
     if request.method == 'GET':
@@ -76,6 +91,7 @@ def update_book(id):
         d['title'] = title
         d['author'] = author
         return redirect('/books')
+
 
 if __name__ == '__main__':
     app.run()

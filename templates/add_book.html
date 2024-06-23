@@ -6,11 +6,16 @@
                value="{{ book.title }}"
                 {% endif %}
         >
-        <input type="text" name="author" placeholder="Autor"
-                {% if book %}
-               value="{{ book.author }}"
-                {% endif %}
-        >
+{#        <input type="text" name="author" placeholder="Autor"#}
+{#                {% if book %}#}
+{#               value="{{ book.author }}"#}
+{#                {% endif %}#}
+{#        >#}
+        <select name="author">
+            {% for author in authors %}
+            <option value="{{ loop.index0 }}">{{ author }}</option>
+            {% endfor %}
+        </select>
         <input type="submit">
     </form>
 {% endblock %}
