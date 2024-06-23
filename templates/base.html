@@ -14,6 +14,8 @@
         width: 100%;
         background-color: black;
         color: antiquewhite;
+        display: flex;
+        flex-direction: row;
     }
 
     {% block style %}
@@ -23,12 +25,15 @@
             background-color: aqua;
         }
     {% endblock %}
+    a {
+        margin: 2px;
+    }
 </style>
 <body>
 <div class="all">
-    <div class="header">
-        <a href="\books">Ksiazki</a>
-    </div>
+
+    {% include 'header.html' %}
+
     <div class="content">
         {% block zawartosc %}
             To jest bazowa zawartość

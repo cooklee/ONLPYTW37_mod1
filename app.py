@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -40,6 +40,42 @@ def p():
 def books():
     return render_template('books.html', books=lst)
 
+@app.route('/add_book', methods=['GET', 'POST'])
+def add_book():
+    if request.method == 'GET':
+        return render_template('add_book.html')
+    else:
+        title = request.form['title']
+        author = request.form['author']
+        d= {
+            'title':title,
+            'author':author
+        }
+        lst.append(d)
+    return redirect('/books')
+
+
+@app.route('/delete_book/<int:id>', methods=['POST', 'GET'])
+def del_book(id):
+    if request.method == 'GET':
+        return render_template('del_book.html', book=lst[id])
+    else:
+        odp = request.form['odp']
+        if odp == 'Tak':
+            lst.pop(id)
+        return redirect('/books')
+
+@app.route('/update_book/<int:id>', methods=['POST', 'GET'])
+def update_book(id):
+    if request.method == 'GET':
+        return render_template('add_book.html', book=lst[id])
+    else:
+        title = request.form['title']
+        author = request.form['author']
+        d = lst[id]
+        d['title'] = title
+        d['author'] = author
+        return redirect('/books')
 
 if __name__ == '__main__':
     app.run()

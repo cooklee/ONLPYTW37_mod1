@@ -11,6 +11,8 @@
         <tr>
             <td>{{ element.title }}</td>
             <td>{{ element.author }}</td>
+            <td><a href="/delete_book/{{ loop.index0 }}">usuń</a></td>
+            <td><a href="/update_book/{{ loop.index0 }}">edycja</a></td>
         </tr>
     {% endfor %}
     </tbody>

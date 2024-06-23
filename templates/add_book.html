@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block zawartosc %}
+    <form method="post">
+        <input type="text" name="title" placeholder="Tytuł"
+                {% if book %}
+               value="{{ book.title }}"
+                {% endif %}
+        >
+        <input type="text" name="author" placeholder="Autor"
+                {% if book %}
+               value="{{ book.author }}"
+                {% endif %}
+        >
+        <input type="submit">
+    </form>
+{% endblock %}
