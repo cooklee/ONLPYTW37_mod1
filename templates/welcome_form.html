@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block style %}
+        .content {
+            width: 100%;
+            height: 10px;
+            background-color: red;
+        }
+    {% endblock %}
+{% block zawartosc %}
+    <form method="post">
+        <input type="text" name="imie" placeholder="Imie">
+        <input type="text" name="nazwisko" placeholder="Nazwisko">
+        <input type="submit">
+    </form>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .all {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        width: 100%;
+        background-color: black;
+        color: antiquewhite;
+    }
+
+    {% block style %}
+        .content {
+            width: 100%;
+            height: 1000px;
+            background-color: aqua;
+        }
+    {% endblock %}
+</style>
+<body>
+<div class="all">
+    <div class="header">
+        <a href="\books">Ksiazki</a>
+    </div>
+    <div class="content">
+        {% block zawartosc %}
+            To jest bazowa zawartość
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

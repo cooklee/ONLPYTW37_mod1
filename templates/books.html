@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block zawartosc %}
+    <table>
+        <thead>
+            <tr>
+                <th>Tytuł</th><th>Autor</th>
+            </tr>
+        </thead>
+    <tbody>
+    {% for element in books %}
+        <tr>
+            <td>{{ element.title }}</td>
+            <td>{{ element.author }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
